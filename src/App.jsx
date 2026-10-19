@@ -6,6 +6,7 @@ import Partners from './components/Partners/Partners';
 import WhyUs from './components/WhyUs/WhyUs';
 import ContactForm from './components/ContactForm/ContactForm';
 import Lecturers from './pages/Lecturers';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -218,15 +219,21 @@ function App() {
     );
   }
 
-  // СПИСОК ЛЕКТОРОВ
+
   if (currentPage === 'lecturers') {
     return (
       <div style={pageStyle}>
         <Header onNavigate={handleNav} />
         <main style={{ maxWidth: '1000px', margin: '0 auto', padding: '20px' }}>
-          <Lecturers onSelectLecturer={handleSelect} />
+          
+          {}
+          <ErrorBoundary onReset={() => window.scrollTo({ top: 0 })}>
+            <Lecturers onSelectLecturer={handleSelect} />
+          </ErrorBoundary>
+
         </main>
         {footer}
+        {modal}
       </div>
     );
   }
